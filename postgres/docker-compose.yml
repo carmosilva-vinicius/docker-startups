@@ -1,0 +1,35 @@
+
+services:
+
+    postgres:
+        container_name: postgres
+        image: postgres:17.0-alpine3.20
+        network_mode: host
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - 5432:5432
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4:8.11.0
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=carmosilva.vinicius@gmail.com
+            - PGADMIN_DEFAULT_PASSWORD=postgres
+            - PGADMIN_LISTEN_PORT=8090
+        ports:
+            - 8090:80
+        network_mode: host
+        volumes:
+            - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+    postgres_data:
+        external: true
+        name: postgres_data
+    pgadmin_data:
+        external: true
+        name: pgadmin_data

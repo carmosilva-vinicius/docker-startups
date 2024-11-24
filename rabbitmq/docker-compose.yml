@@ -1,0 +1,13 @@
+
+services:
+
+    rabbitmq:
+        hostname: rabbitmq
+        container_name: rabbitmq
+        network_mode: host
+        ports:
+            - 15672:15672
+        image: rabbitmq:4.0.2-management-alpine
+        environment: 
+            - RABBITMQ_DEFAULT_USER=rabbitmq
+            - RABBITMQ_DEFAULT_PASS=rabbitmq
